@@ -1,0 +1,21 @@
+.footer {
+  box-sizing: border-box;
+  padding: 30px;
+  height: 200px;
+  width: 100vw;
+  background-color: #00a9f4;
+  color: white;
+  .fa-brands {
+    color: white;
+  }
+}
+.section {
+  text-align: center;
+}
+
+.darkFooter {
+  background-color: #000;
+  .fa-brands {
+    color:white;
+  }
+}

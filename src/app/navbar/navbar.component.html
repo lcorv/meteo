@@ -1,0 +1,66 @@
+<div
+  class="nav-container"
+  appNavbarHiding
+  [ngStyle.gt-sm]="{ 'padding-top.px': 30 }"
+>
+  <div fxHide.gt-sm>
+    <h2>Search</h2>
+  </div>
+  <div class="section" fxLayout="row wrap" fxLayoutAlign="start">
+    <div fxFlex="100" fxFlex.lt-sm="100">
+      <mat-form-field appearance="fill" color="primary">
+        <mat-label>Type the city</mat-label>
+        <input matInput type="text" [(ngModel)]="city" />
+        <button
+          *ngIf="city"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="city = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <div fxFlex="100" fxFlexOffset="0">
+      <button
+        class="search-button"
+        mat-flat-button
+        class="active"
+        color="primary"
+        (click)="onSearch()"
+        [disabled]="!city"
+      >
+        Weather in {{ city | titlecase }}
+      </button>
+    </div>
+  </div>
+  <div
+    class="section err"
+    *ngIf="errMess"
+    fxLayoutAlign="center center"
+    fxLayout="row wrap"
+  >
+    <div fxFlex="100" class="err-sorry">sorry! 🤷</div>
+    <div fxFlex="100">{{ errMess.status }} - {{ errMess.text }}</div>
+    <div fxFlex="100">{{ errMess.message }}</div>
+  </div>
+
+  <div class="section" fxLayoutAlign="space-between" fxLayout="row wrap">
+    <h3 fxFlex="100">Units:</h3>
+    <mat-label fxFlex="20"
+      ><span class="symbol material-symbols-outlined">
+        thermostat
+      </span></mat-label
+    >
+    <mat-button-toggle-group
+      fxFlex
+      [(value)]="farenheit"
+      aria-label="Units"
+      (click)="onSelect()"
+    >
+      <mat-button-toggle checked value="false">Celsius</mat-button-toggle>
+      <mat-button-toggle value="true">Farenheit</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+</div>

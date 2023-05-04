@@ -1,0 +1,11 @@
+.chart{
+  display: inline-block;
+  width: 100%;
+  flex:100%;
+  margin-left:0px;
+  transition:all 0.5s;
+  fill: white;
+}
+.chart-dark{
+  fill: white;
+}

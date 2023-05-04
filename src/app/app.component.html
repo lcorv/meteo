@@ -1,0 +1,56 @@
+<div [class.my-dark-theme]="dark">
+  <mat-sidenav-container color="primary" class="example-container" autosize>
+    <mat-sidenav color="primary" #drawer class="example-sidenav light-sidenav" [class.dark-sidenav]="dark" mode="push">
+      <app-navbar [drawer]="drawer"></app-navbar>
+    </mat-sidenav>
+    <div class="example-sidenav-content" fxLayout="row wrap" fxLayoutAlign="center" [class.my-darker]="dark"
+      [class.my-light]="!dark">
+      <div class="splash" *ngIf="splash">
+        <div class="icon">
+          <div class="logo">M</div>
+        </div>
+      </div>
+      <mat-toolbar fxFlex="100" fxLayoutAlign="space-around center" fxLayout="row wrap" color="primary" @navbar>
+        <div class="actions" fxLayoutAlign="space-between center" fxFlex="100" >
+          <button mat-icon-button mat-flat-button type="button" color="primary" (click)="drawer.toggle()">
+            <span class="material-symbols-outlined"> search </span>
+          </button>
+          <div *ngIf="city">
+            {{city}}
+          </div>
+          <div class="dark-mode" fxFlexAlign="center" (click)="dark = !dark; putDark(dark)">
+            <button color="primary" mat-icon-button mat-flat-button>
+              <span *ngIf="!dark" class="material-symbols-outlined" @darkBtn>
+                dark_mode
+              </span>
+              <span *ngIf="dark" class="material-symbols-outlined" @darkBtn>
+                light_mode
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="nav-router" fxFlex="50" fxFlex.lt-md="100" fxLayoutAlign="space-around" fxLayout="row">
+          <button fxFlex="30" mat-flat-button  color="accent" routerLinkActive="active" routerLink="home">
+            Today
+          </button>
+          <button fxFlex="30" color="accent" mat-flat-button routerLinkActive="active" routerLink="tomorrow">
+            Tomorrow
+          </button>
+          <button fxFlex="30" mat-flat-button routerLinkActive="active" routerLink="moredays" color="accent">
+            Next days
+          </button>
+        </div>
+
+      </mat-toolbar>
+
+      <div class="container" style="transition:all 0.5s" fxFlex="100" fxFlex.gt-sm="100" fxLayout.gt-sm="col"
+        fxLayout="row wrap" fxLayoutAlign="center start" [@routeAnim]="prepareRoute(outlet)">
+        <div #bg *ngIf="background" class="meteo-bg" @bgInOut></div>
+        <div class="router" fxFlex="100">
+          <app-navigation></app-navigation>
+          <router-outlet #outlet="outlet"></router-outlet>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-container>
+</div>

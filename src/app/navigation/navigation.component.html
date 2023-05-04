@@ -1,0 +1,10 @@
+<div
+  class="nav-container r"
+>
+  
+  <div *ngIf="info" class="city g" >
+    <h3>
+      {{ info.name | titlecase }}, <small>{{ info.country | region }}</small>
+    </h3>
+  </div>
+</div>

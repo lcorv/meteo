@@ -1,0 +1,39 @@
+<div class="day"  *ngIf="today" fxFlex="100" fxLayout="row wrap" fxLayoutAlign="center" appSwipe>
+  <div class="nexthours r" fxFlex="row wrap" fxFlex.gt-sm="50" fxFlex="100">
+    <div fxLayout="col">
+      <div class="hour r" fxLayout="row wrap" *ngFor="let hour of today">
+        <div class="icon b" fxFlex="100">
+          <fa-icon [icon]="icons[hour.weather[0].icon]"></fa-icon>
+        </div>
+        <div fxFlex="100" class="time">
+          {{
+            (hour.dt + meteo.city.timezone + offset) * 1000 | date: 'HH:mm'
+          }}
+        </div>
+      </div>
+    </div>
+    <div
+      class="chart r"
+      [class.chart-dark]="dark"
+      *ngIf="today"
+    >
+      <ngx-charts-line-chart
+        [scheme]="colorScheme"
+        [view]="view"
+        [legend]="legend"
+        [showGridLines]="showGridLines"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [curve]="lineInterpolation"
+        [xAxis]="xAxis"
+        [yAxis]="yAxis"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [timeline]="timeline"
+        [results]="chart"
+      >
+      </ngx-charts-line-chart>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,59 @@
+.nav-container {
+  padding: 20px;
+  h2 {
+    color: #fff;
+    text-align: center;
+  }
+  mat-form-field {
+    font-size: 20px;
+    width: 100%;
+  }
+  .mat-button-toggle{
+    width: 50%;
+    background-color: #0007;
+    color: #aaa5;
+    line-height: 60px;
+  }
+  .mat-button-toggle-checked{
+    background-color: #4E8DDA!important;
+    color:white!important;
+    border: none;
+  }
+
+  .section {
+    padding: 10px 20px;
+    border-bottom: 0px solid #7775;
+    .search-button{
+      font-size:auto!important;
+    }
+    h3{
+      margin:10px
+    }
+    .symbol{
+      font-size: 40px;
+      line-height: 60px;
+    }
+  }
+  .err {
+    text-align: center;
+    .err-sorry {
+      font-size: 40px;
+    }
+  }
+  .propic {
+    border-radius: 50%;
+    width: 100%;
+  }
+  h3 {
+    margin: 2px;
+  }
+  small {
+    color: #777;
+    margin: 2px;
+  }
+
+  button {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}

@@ -1,0 +1,97 @@
+<div class="page-container" 
+ fxFlex="100" 
+ fxLayout="row wrap" 
+ appSwipe
+ >
+  
+  <div
+      
+      *ngFor="let day of meteo| slice:1"
+      fxLayoutAlign="center center"
+      fxLayout="row wrap"
+      fxFlex="100"
+      class="r meteo"
+      style="max-height:fit-content;overflow:hidden"
+     
+    >
+    <div class="more-days" fxLayout="row wrap" *ngIf="info"
+    @flyIn>
+      <h5 class="date b" fxFlex="100">
+        {{ (day.dt + (info.timezone + offset)) * 1000 | date: 'EEEE MMMM dd YYYY' }}
+      </h5>
+      <div
+        class="forecast b"
+        fxFlex="100"
+        fxLayoutAlign="center start"
+        fxLayout="row wrap"
+      >
+        <div
+          *ngIf="!farenheit"
+          fxFlex="100"
+          fxLayoutAlign="center center"
+          class="r temp-container"
+        >
+          <div class="g temp">
+            {{ day.main.temp | number: '1.0-0' }}
+          </div>
+          <div class="b" fxLayout="row wrap">
+            <div class="r deg" fxFlex="100">°</div>
+            <div class="g deg" fxFlex="100">c</div>
+          </div>
+        </div>
+        <div *ngIf="farenheit" fxFlex="100"
+        fxLayoutAlign="center center" class="r temp-container">
+          <div class="g temp">
+            {{ day.main.temp | farenheit }}
+          </div>
+          <div class="b"fxLayout="row wrap">
+            <div class="r deg" fxFlex="100">°</div>
+            <div class="g deg" fxFlex="100">f</div>
+          </div>
+        </div>
+        <div class="weather-description" fxFlex="100">
+          <div class="r">
+            {{ day.weather[0].description | titlecase }}
+          </div>
+          <div *ngIf="!farenheit" class="b">
+            Perceived temperature:
+            {{ day.main.feels_like | number: '1.0-0' }}°
+          </div>
+          <div *ngIf="farenheit" class="b">
+            Perceived temperature:
+            {{ day.main.feels_like | farenheit }}°
+          </div>
+        </div>
+        <div class="r" fxLayoutAlign="center" >
+          <fa-icon *ngIf="icons" class="weather-icon" [icon]="icons[day.weather[0].icon]" @spread ></fa-icon>
+        </div>
+
+        <div *ngIf="!farenheit" fxFlex="100" fxLayoutAlign="center" class="maxMin g">
+          <div class="r" fxFlex >
+            Max: {{ day.main.temp_max | number: '1.0-0' }}°<span
+              class="material-symbols-outlined"
+            >
+              north
+            </span>
+            <span class="separator">.</span>
+            Min: {{ day.main.temp_min | number: '1.0-0' }}°
+            <span class="material-symbols-outlined"> south </span>
+          </div>
+        </div>
+        <div *ngIf="farenheit" fxFlex="100" class="maxMin g">
+          <div class="r" fxFlex>
+            Max: {{ day.main.temp_max | farenheit }}°<span
+              class="material-symbols-outlined"
+            >
+              north
+            </span>
+            <span class="separator">.</span>
+            Min: {{ day.main.temp_min | farenheit }}°
+            <span class="material-symbols-outlined"> south </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    </div>
+</div>
