@@ -11,7 +11,7 @@ import { ProcessHttpMsgService } from './process-http-msg.service';
 
 @Injectable()
 export class MeteoService {
-  private apiKey = '868bf5c0468b60f81fd7434185cdd7af';
+  private apiKey = '';
   private drawer: BehaviorSubject<MatDrawer> = new BehaviorSubject<MatDrawer|any>('');
   drawerstate: Observable<MatDrawer>=this.drawer.asObservable();
   private city: BehaviorSubject<string> = new BehaviorSubject<string>('');
